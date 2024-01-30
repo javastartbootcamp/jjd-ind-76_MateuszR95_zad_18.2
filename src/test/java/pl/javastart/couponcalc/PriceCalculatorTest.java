@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -143,6 +144,20 @@ public class PriceCalculatorTest {
 
         // then
         assertThat(result).isEqualTo(4.79);
+    }
+
+    @Test
+    public void shouldReturnPriceForSingleProductAndNoCoupon() {
+
+        // given
+        List<Product> products = new ArrayList<>();
+        products.add(new Product("Masło", 5.99, Category.FOOD));
+
+        // when
+        double result = priceCalculator.calculatePrice(products, Collections.emptyList());
+
+        // then
+        assertThat(result).isEqualTo(5.99);
     }
 
 
